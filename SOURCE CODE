@@ -1,0 +1,166 @@
+#include <stdio.h>
+
+#define MIN_BAL 500   // minimum balance rule
+
+struct account{
+    int accNo;
+    char name[30];
+    double balance;
+};
+
+int find(struct account a[], int n, int accNo){
+    for(int i=0;i<n;i++)
+        if(a[i].accNo==accNo) return i;
+    return -1;
+}
+
+int main(){
+
+    struct account a[100];
+    int n=0, choice;
+
+    while(1){
+
+        printf("\n1. Create Account");
+        printf("\n2. Deposit");
+        printf("\n3. Withdraw");
+        printf("\n4. Transfer");
+        printf("\n5. Display All");
+        printf("\n0. Exit");
+
+        printf("\n\nEnter choice: ");
+        scanf("%d",&choice);
+
+        if(choice==0) break;
+
+        int acc, from, to, x, y;
+        double amt;
+
+        switch(choice){
+
+        // ================= CREATE =================
+        case 1:
+            printf("\nEnter account number: ");
+            scanf("%d",&a[n].accNo);
+
+            // check duplicate account
+            if(find(a,n,a[n].accNo)!=-1){
+                printf("Account number already exists!\n");
+                break;
+            }
+
+            printf("Enter account name: ");
+            scanf("%s",a[n].name);
+
+            printf("Enter opening balance: ");
+            scanf("%lf",&a[n].balance);
+
+            if(a[n].balance < MIN_BAL){
+                printf("Opening balance must be at least %d\n",MIN_BAL);
+                break;
+            }
+
+            n++;
+            printf("Account created successfully!\n");
+            break;
+
+        // ================= DEPOSIT =================
+        case 2:
+            printf("\nEnter account number: ");
+            scanf("%d",&acc);
+
+            x=find(a,n,acc);
+            if(x==-1){ printf("Account not found!\n"); break; }
+
+            printf("Enter amount to deposit: ");
+            scanf("%lf",&amt);
+
+            if(amt<=0){
+                printf("Invalid amount!\n");
+                break;
+            }
+
+            a[x].balance+=amt;
+            printf("Deposit successful. New balance = %.2lf\n",a[x].balance);
+            break;
+
+        // ================= WITHDRAW =================
+        case 3:
+            printf("\nEnter account number: ");
+            scanf("%d",&acc);
+
+            x=find(a,n,acc);
+            if(x==-1){ printf("Account not found!\n"); break; }
+
+            printf("Enter amount to withdraw: ");
+            scanf("%lf",&amt);
+
+            if(amt<=0){
+                printf("Invalid amount!\n");
+            }
+            else if(a[x].balance - amt < MIN_BAL){
+                printf("Withdrawal denied! Minimum balance %d must remain\n",MIN_BAL);
+            }
+            else{
+                a[x].balance-=amt;
+                printf("Withdrawal successful. New balance = %.2lf\n",a[x].balance);
+            }
+            break;
+
+        // ================= TRANSFER =================
+        case 4:
+            printf("\nEnter FROM account number: ");
+            scanf("%d",&from);
+
+            printf("Enter TO account number: ");
+            scanf("%d",&to);
+
+            x=find(a,n,from);
+            y=find(a,n,to);
+
+            if(x==-1 || y==-1){
+                printf("One or both accounts not found!\n");
+                break;
+            }
+
+            printf("Enter amount to transfer: ");
+            scanf("%lf",&amt);
+
+            if(amt<=0){
+                printf("Invalid amount!\n");
+                break;
+            }
+
+            if(a[x].balance - amt < MIN_BAL){
+                printf("Transfer denied! Sender must keep minimum balance %d\n",MIN_BAL);
+                break;
+            }
+
+            printf("\nBefore Transfer:");
+            printf("\n%s balance = %.2lf",a[x].name,a[x].balance);
+            printf("\n%s balance = %.2lf",a[y].name,a[y].balance);
+
+            a[x].balance-=amt;
+            a[y].balance+=amt;
+
+            printf("\n\nAfter Transfer:");
+            printf("\n%s balance = %.2lf",a[x].name,a[x].balance);
+            printf("\n%s balance = %.2lf",a[y].name,a[y].balance);
+            printf("\nTransfer successful!\n");
+            break;
+
+        // ================= DISPLAY =================
+        case 5:
+            printf("\nAll Accounts:\n");
+            for(int i=0;i<n;i++)
+                printf("Acc:%d  Name:%s  Balance:%.2lf\n",
+                       a[i].accNo,a[i].name,a[i].balance);
+            break;
+
+        default:
+            printf("Invalid choice!\n");
+        }
+    }
+
+    return 0;
+}
