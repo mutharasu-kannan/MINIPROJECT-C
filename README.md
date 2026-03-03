@@ -4,87 +4,90 @@
 # 📌 Overview
 
 This is a menu-driven Bank Management System written in C.
-The program allows users to create accounts, deposit money, withdraw money, transfer funds, and display all accounts.
+# 💰 Simple Bank Management System in C
 
-It also enforces a minimum balance rule for realistic banking simulation.
+A console-based **Bank Management System** written in C.
+This project demonstrates structured programming concepts using arrays and structures.
 
-# 🚀 Features
+---
 
-✅ Create Account
+## 📌 Features
 
-✅ Deposit Money
+* ➕ Add New Account
+* 🔄 Update Account Balance (Deposit / Withdraw)
+* ❌ Delete Account
+* 🔁 Transfer Amount Between Accounts
+* 📄 Display All Accounts
+* 👤 Display Single Account Details
+* 🚪 Exit Program
 
-✅ Withdraw Money
+---
 
-✅ Transfer Money
+## 🛠 Technologies Used
 
-✅ Display All Accounts
-
-✅ Duplicate Account Prevention
-
-✅ Minimum Balance Rule Enforcement
-
-✅ Input Validation
+* C Programming Language
+* Standard Library (`stdio.h`, `string.h`)
+* Structures
+* Functions
+* Arrays
 
 
-# 💰 Minimum Balance Rule
 
-Minimum balance required: ₹500
+## ⚙️ How It Works
 
-Cannot create account with less than ₹500
+The program maintains up to **100 bank accounts** using a structure:
 
-Withdrawals must not reduce balance below ₹500
 
-Transfers must not reduce sender balance below ₹500
 
-# 🛠 Technologies Used
+All operations are handled using a menu-driven interface.
 
-C Programming Language
+---
 
-Structures (struct)
+## 🖥 Menu Options
 
-Functions
+```
+1 - store a formatted text file of accounts called "accounts.txt" for printing
+2 - update an account
+3 - add a new account
+4 - delete an account
+5 - transfer amount between accounts
+6 - display single account details
+7 - end program
+```
 
-Arrays
 
-Loops (for, while)
 
-Conditional Statements (if-else)
+## 🔁 Transfer Feature
 
-Switch Case (Menu-driven logic)
+The transfer feature allows:
 
-Concepts Used
+* Selecting source account
+* Selecting destination account
+* Entering transfer amount
+* Automatically updating both balances
+* Displaying updated details of both accounts
 
-User-defined structures
+---
 
-Array of structures
+## 🎯 Learning Concepts Covered
 
-Searching using function
+* Structures in C
+* Array of Structures
+* Function-based modular programming
+* Menu-driven programs
+* Input/Output formatting
+* Basic banking logic implementation
 
-Menu-driven program design
+---
 
-Banking logic implementation
+## 🚀 Future Improvements
 
-# 📸 Sample Output
-1. Create Account
-2. Deposit
-3. Withdraw
-4. Transfer
-5. Display All
-0. Exit
+* Add password authentication
+* Add transaction history
+* Save data using file handling
+* Add minimum balance rule
+* Convert into GUI application
 
-Enter choice: 1
-Enter account number: 101
-Enter account name: Ravi
-Enter opening balance: 1000
-Account created successfully!
 
-# 🔒 Validations Implemented
 
-Prevents duplicate account numbers
 
-Prevents negative deposits or withdrawals
-
-Ensures minimum balance is maintained
-
-Checks for account existence before operations
