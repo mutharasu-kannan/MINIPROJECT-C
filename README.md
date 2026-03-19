@@ -1,12 +1,12 @@
 # MINIPROJECT-C
-Banking Management System in C
-Overview
+# Banking Management System in C
+# Overview
 
 This C program implements a simple bank account management system with file-based storage. It allows users to create, update, delete accounts, transfer funds, and track transaction history with password protection and account security features.
 
 The program uses binary files (credit.dat) to store account information and transaction logs (transactions.dat) to maintain a history of all transactions with timestamps.
 
-Features
+# Features
 
 Account Management
 
@@ -26,7 +26,7 @@ Log all transactions (Deposit, Payment, Transfer) with date and time.
 
 View transaction history for any account.
 
-Security Features
+# Security Features
 
 Password verification for sensitive operations.
 
@@ -34,13 +34,13 @@ Account lock after 3 consecutive wrong password attempts.
 
 Minimum balance alert (alert triggered if balance < 1000).
 
-Reporting
+# Reporting
 
 Generate a formatted text file (accounts.txt) of all accounts for printing or review.
 
 Display account details before and after updates or transfers.
 
-File Structure
+# File Structure
 
 credit.dat: Binary file storing account information.
 
@@ -48,7 +48,7 @@ transactions.dat: Binary file storing transaction history.
 
 accounts.txt: Text file generated for human-readable account overview.
 
-Data Structures
+# Data Structures
 
 Client Account
 
@@ -62,7 +62,7 @@ struct clientData {
     int locked;                // 0 = active, 1 = locked
 };
 
-Transaction Record
+# Transaction Record
 
 struct transaction {
     unsigned int acctNumFrom;  // Source account number
