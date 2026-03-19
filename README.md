@@ -1,93 +1,214 @@
 # MINIPROJECT-C
-# Bank Management System in C
+Banking Management System in C
+Overview
 
-# 📌 Overview
+This C program implements a simple bank account management system with file-based storage. It allows users to create, update, delete accounts, transfer funds, and track transaction history with password protection and account security features.
 
-This is a menu-driven Bank Management System written in C.
-# 💰 Simple Bank Management System in C
+The program uses binary files (credit.dat) to store account information and transaction logs (transactions.dat) to maintain a history of all transactions with timestamps.
 
-A console-based **Bank Management System** written in C.
-This project demonstrates structured programming concepts using arrays and structures.
+Features
 
----
+Account Management
 
-## 📌 Features
+Create a new account with first name, last name, balance, and password.
 
-* ➕ Add New Account
-* 🔄 Update Account Balance (Deposit / Withdraw)
-* ❌ Delete Account
-* 🔁 Transfer Amount Between Accounts
-* 📄 Display All Accounts
-* 👤 Display Single Account Details
-* 🚪 Exit Program
+Update account balance by recording deposits or payments.
 
----
+Delete existing accounts.
 
-## 🛠 Technologies Used
+Password protection with account lock after 3 failed attempts.
 
-* C Programming Language
-* Standard Library (`stdio.h`, `string.h`)
-* Structures
-* Functions
-* Arrays
+Transaction Management
 
+Transfer funds between accounts with a daily transfer limit of 200,000.
 
+Log all transactions (Deposit, Payment, Transfer) with date and time.
 
-## ⚙️ How It Works
+View transaction history for any account.
 
-The program maintains up to **100 bank accounts** using a structure:
+Security Features
 
+Password verification for sensitive operations.
 
+Account lock after 3 consecutive wrong password attempts.
 
-All operations are handled using a menu-driven interface.
+Minimum balance alert (alert triggered if balance < 1000).
 
----
+Reporting
 
-## 🖥 Menu Options
+Generate a formatted text file (accounts.txt) of all accounts for printing or review.
 
-```
+Display account details before and after updates or transfers.
+
+File Structure
+
+credit.dat: Binary file storing account information.
+
+transactions.dat: Binary file storing transaction history.
+
+accounts.txt: Text file generated for human-readable account overview.
+
+Data Structures
+
+Client Account
+
+struct clientData {
+    unsigned int acctNum;      // Account number (1-100)
+    char lastName[15];         // Last Name
+    char firstName[10];        // First Name
+    double balance;            // Current balance
+    char password[20];         // Account password
+    int failedAttempts;        // Track wrong password entries
+    int locked;                // 0 = active, 1 = locked
+};
+
+Transaction Record
+
+struct transaction {
+    unsigned int acctNumFrom;  // Source account number
+    unsigned int acctNumTo;    // Destination account number
+    char type[10];             // Deposit, Payment, Transfer
+    double amount;             // Transaction amount
+    char dateTime[20];         // Timestamp: YYYY-MM-DD HH:MM
+};
+Installation & Compilation
+
+Save the code to a file named, for example, banking.c.
+
+Open a terminal or command prompt.
+
+Compile using GCC:
+
+gcc banking.c -o banking
+
+Run the program:
+
+./banking      # Linux / macOS
+banking.exe    # Windows
+Usage Instructions
+
+After running the program, the menu will appear:
+
+Enter your choice
 1 - store a formatted text file of accounts called "accounts.txt" for printing
 2 - update an account
 3 - add a new account
 4 - delete an account
 5 - transfer amount between accounts
-6 - display single account details
+6 - view transaction history
 7 - end program
-```
+1. Generate Account Report
 
+Creates accounts.txt containing all accounts.
 
+Opens the file automatically in Notepad (Windows) or default text editor (macOS/Linux).
 
-## 🔁 Transfer Feature
+2. Update Account
 
-The transfer feature allows:
+Enter the account number.
 
-* Selecting source account
-* Selecting destination account
-* Entering transfer amount
-* Automatically updating both balances
-* Displaying updated details of both accounts
+Verify password.
 
----
+Enter deposit (+) or payment (-) amounts.
 
-## 🎯 Learning Concepts Covered
+Displays updated balance.
 
-* Structures in C
-* Array of Structures
-* Function-based modular programming
-* Menu-driven programs
-* Input/Output formatting
-* Basic banking logic implementation
+Logs the transaction in transactions.dat.
 
----
+3. Create New Account
 
-## 🚀 Future Improvements
+Enter a new account number.
 
-* Add password authentication
-* Add transaction history
-* Save data using file handling
-* Add minimum balance rule
-* Convert into GUI application
+Enter first name, last name, initial balance, and password.
 
+Logs initial deposit transaction.
 
+4. Delete Account
+
+Enter the account number to delete.
+
+Resets account data to blank.
+
+5. Transfer Funds
+
+Enter FROM and TO account numbers.
+
+Enter transfer amount (limit 200,000/day).
+
+Verifies FROM account password.
+
+Updates balances and logs the transaction.
+
+Alerts if balance falls below 1000 in either account.
+
+6. View Transaction History
+
+Enter the account number.
+
+Displays all deposits, payments, and transfers for the account.
+
+Security & Validation
+
+Accounts lock after 3 wrong password attempts.
+
+Transfers limited to 200,000 per transaction.
+
+Alerts for low balances (<1000).
+
+Password-protected sensitive operations: update account, transfer funds.
+
+Dependencies
+
+Standard C libraries:
+
+stdio.h – Input/output
+
+stdlib.h – Memory allocation, exit
+
+string.h – String operations
+
+time.h – Date and time logging
+
+No external dependencies.
+
+File Management
+
+credit.dat: Random-access binary file for accounts.
+
+transactions.dat: Append-only binary file for transactions.
+
+accounts.txt: Generated from credit.dat for easy reading.
+
+Important: Ensure these files are in the same directory as the executable.
+
+Example Flow
+
+User creates two accounts:
+
+Account 1: Alice Smith, balance 5000
+Account 2: Bob Jones, balance 3000
+
+User transfers 1000 from Alice to Bob.
+
+Both accounts updated.
+
+Transaction logged in transactions.dat.
+
+User views transaction history of Alice:
+
+2026-03-19 15:45: Deposit 5000.00
+2026-03-19 15:50: Transfer from 1 to 2 1000.00
+
+Low balance alert triggers if balance < 1000.
+
+Notes
+
+Maximum 100 accounts supported (account numbers 1–100).
+
+Account numbers are unique; duplicate creation is prevented.
+
+Transactions are logged with local date and time.
+
+Program is designed for console usage.
 
 
